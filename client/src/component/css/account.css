@@ -1,0 +1,182 @@
+@import url(https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap);
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.account-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-form {
+    border: 1px solid rgb(185, 185, 185);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.form-signin {
+    width: 50vw;
+    height: 60vh;
+}
+
+.form-signup {
+    width: 55vw;
+    height: 70vh;
+    
+}
+
+.account-form__img {
+    position: relative;
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-form__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.account-form__form {
+    position: relative;
+    width: 40%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    margin: 4vh 0 4vh 0;
+}
+
+.account-form__form img {
+    width: 35%;
+}
+
+.Muti-tab {
+    width: 90%;
+    border-bottom: 1px solid rgb(214, 214, 214);
+}
+
+.main-tab, .tab {
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab {
+    width: 90%;
+    margin-top: 10px;
+}
+
+.form__header {
+    position: relative;
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form__header h2 {
+    margin-bottom: 10px;
+    color: #202124;
+}
+
+.form__header h4 {
+    font-size: calc(1vw - 3px);
+    color: #202124;
+    font-weight: 500;
+}
+
+.form__body {
+    position: relative;
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+}
+
+.form__body span {
+    font-size: small;
+    color: #616161;
+}
+
+.acf-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.acf-row > .acf_b-textField {
+    width: 49%;
+}
+
+.acf_b-textField {
+    margin: 20px;
+}
+
+.form__bottom {
+    position: relative;
+    width: 70%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#loading {
+    width: 17% !important;
+    height: 17% !important;
+    color: white;
+}
+
+.form__bottom > span {
+    margin: 20px 0 5px 0;
+    font-size: small;
+}
+
+
+.btn-registration {
+    color: #1a73e8 !important;
+    text-transform: none !important;
+    font-weight: bold !important;
+}
+
+.btn-submit {
+    width: 65%;
+    
+    background-color: #1a73e8 !important;
+    text-transform: none !important;
+    font-weight: bold !important;
+}
+
+.btn-gg-account {
+    width: 1vw;
+    height: 1vw;
+    border-radius: 50% !important;
+    background-color: white !important;
+}
+
+.img-gg-account {
+    width: 100%;
+    object-fit: cover;
+}
+
