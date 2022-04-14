@@ -5,11 +5,15 @@ const sendReq = (configReq) => {
         const config = {
             method: configReq.method,
             url: `http://localhost:4000${configReq.url}`,
-            headers: configReq.header,
+            headers: configReq.header || "",
             withCredentials: true,
-            data: configReq.data
+            data: configReq.data || "",
+            params: configReq.params || "",
+            responseType: configReq.responseType || "",
+            signal: configReq.signal || "",
+            onUploadProgress: configReq.onUploadProgress || ""
         }
-        axios(config)
+        axios.request(config)
             .then((res) => resolve(res))
             .catch(err => reject(err))
     })

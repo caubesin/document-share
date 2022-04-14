@@ -14,5 +14,6 @@ router.post('/signin', passport.authenticate('local', {
 
 router.get('/fail', account_ctrl.fail_authenticate);
 router.post('/signup', account_ctrl.signUpReq);
+router.get('/logout', account_ctrl.logout);
 
 module.exports = router;

@@ -4,22 +4,9 @@ const bcrypt = require('bcryptjs');
 const db = mongoose.connection;
 
 
-mongoose.connect(process.env.MONGO_LOCAL || process.env.MONGODB_ATLAS, {useNewUrlParser: true, useNewUrlParser: true,  useUnifiedTopology: true});
-
-let gfs;
+mongoose.connect(process.env.MONGODB_LOCAL || process.env.MONGODB_ATLAS, {useNewUrlParser: true, useNewUrlParser: true,  useUnifiedTopology: true});
 
 db.once('open', () => {
-    gfs = new mongoose.mongo.GridFSBucket(db,{
-        file: (req, file) => {
-            if (file.mimetype === 'image/jpeg') {
-              return {
-                bucketName: 'photos'
-              };
-            } else {
-              return null;
-            }
-        }
-    })
     console.log("Kết nối thành công !");
 })
 db.on('error', (err) => {
@@ -27,10 +14,16 @@ db.on('error', (err) => {
 })
 
 const userSchema = new Schema({
-    firstname: {type: String},
-    lastname: {type: String},
+    name: {type: String},
     username: { type: String, required: true},
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+    own_files: {type: Array, default: []},
+    shared_files: {type: Array, default: []},
+    friend: {
+        request: {type:  Array, default: []},
+        accepted: {type:  Array, default: []},
+        myRequest: {type:  Array, default: []}
+    }
 })
 
 userSchema.methods.generateHash = function () {
@@ -43,7 +36,22 @@ userSchema.methods.validPassword = function (password) {
 
 const User = mongoose.model("users", userSchema);
 
+const folderSchema = new Schema({
+    name: {type: String},
+    child: {type: Array, default: []},
+    uploadDate: {type: Date},
+    metadata : {
+        isDir: {type: Boolean, default: true},
+        parent: {type: String},
+        own: {type: Object},
+        shared: {type: Array}
+    }
+})
+
+const Folder = mongoose.model("folders", folderSchema);
+
 module.exports = {
     User,
     db,
+    Folder
 }

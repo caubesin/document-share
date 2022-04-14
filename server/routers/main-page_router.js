@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth_ctrl = require('../controller/account_ctrl');
-const data_ctrl = require('../controller/data_ctrl');
-const upload = require('../config/multer_config');
+const user_ctrl = require('../controller/user_ctrl');
 
 const isLogin = function (req, res, next) {
     if (req.isAuthenticated()) {
@@ -12,6 +11,6 @@ const isLogin = function (req, res, next) {
 };
 
 router.all('/', isLogin, auth_ctrl.successAuth);
-router.post('/upload',upload.single("file"), data_ctrl.upLoadFile);
+router.get('/data',isLogin, user_ctrl.getCurrentFileAndFolder);
 
 module.exports = router;

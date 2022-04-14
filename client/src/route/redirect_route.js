@@ -1,31 +1,32 @@
-import React, {useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-import { setIsLoading} from "../features/authenticateSlice";
-import Loading from '../component/loading';
-import { sendReqToServer } from "../features/authenticateSlice";
+import React, {useEffect,useState} from "react";
+import { useDispatch } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
+import { sendReqReLogin } from "../features/authenticateSlice";
+import Loading from "../component/loading";
 
 const ReRoute = ({children}) => {
-    const auth = useSelector((state) => state.authenticate.auth.isAuthenticated);
+    const params = useParams();
+    const [renderEl,  setRenderEl] = useState(<Loading></Loading>);
+    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const isLoading = useSelector(state => state.authenticate.isLoading)
-
-    const sendReqLogin = async () => {
-        const configReq = {
-            method: 'get',
-            url: '/',
-            header: "Content-Type': 'text/plain; charset=utf-8",
-            data: ""
-        }
-
-        dispatch(sendReqToServer(configReq));
-    }
-
+    
     useEffect(() => {
-        sendReqLogin()
-    }, []);
+        dispatch(sendReqReLogin()).then((action) => {
+            if(action.meta.requestStatus === "rejected") {
+                navigate('/error')
+            }
+            else if(action.payload.isAuthenticated) {
+                navigate(`/${params.path ? params.path : "main"}`)
+            }
+            else {
+                setRenderEl(children);
+            }
+        });
+    },[])
     return (
-        auth ? <Navigate to="/document"/> : children
+        <>
+            {renderEl}
+        </>
     )
 }
 

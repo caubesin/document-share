@@ -7,7 +7,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import InputAdornment from '@mui/material/InputAdornment';
-import { sendReqToServer, setMess, setIsLoad } from '../features/authenticateSlice';
+import { setMess, setIsLoad, sendReqRegister } from '../features/authenticateSlice';
 import qs from 'qs';
 import $ from 'jquery';
 import Logo from "../assets/img/document-share.png";
@@ -82,7 +82,8 @@ const Signup = () => {
         }
         else return true;
     }
-    const handleClick = () => {
+    const handleClick = (e) => {
+        e.preventDefault();
         setTypeField({
             name: false,
             username: false,
@@ -105,23 +106,20 @@ const Signup = () => {
             re_password: re_password,
         }
         if(checkSignUp(data)) {
-            const configReq = {
-                method: 'POST',
-                url: '/account/signup',
-                header: 'application/x-www-form-urlencoded;charset=utf-8',
-                data: qs.stringify({
-                    "firstname": `${firstname}`,
-                    "lastname": `${lastname}`,
-                    "username": `${username}`,
-                    "password": `${password}`
-                })
-            }
+            const dataReq = qs.stringify({
+                "name": `${lastname + " " +firstname}`,
+                "username": `${username}`,
+                "password": `${password}`
+            })
             dispatch(setIsLoad(true))
             setTimeout(() => {
-                dispatch(sendReqToServer(configReq))
+                dispatch(sendReqRegister(dataReq)).then((action) => {
+                    if(action.meta.requestStatus === "rejected") {
+                        navigate('/error')
+                    }
+                })
             }, 2000)
         }
-        //navigate('/signin');
     }
     return(
         <div className='account-page'>
@@ -129,7 +127,7 @@ const Signup = () => {
                 <div className='account-form__img'>
                     <img src={FormImg} alt='Img'/>
                 </div> 
-                <form className='account-form__form'>
+                <form className='account-form__form' onSubmit={handleClick}>
                     <img src={Logo} alt="Logo"/>
                     <div className='form__header'>
                         <h2>Đăng ký</h2>
@@ -150,7 +148,7 @@ const Signup = () => {
                         <span>Từ 8 đến 15 ký tự bao gồm cả chữ cái và chữ số</span>
                     </div>
                     <div className='form__bottom'>
-                        <Button variant="contained" size="large" className='btn-submit' onClick={handleClick}>{isLoad ? <CircularProgress></CircularProgress> : "Đăng ký"}</Button>
+                        <Button variant="contained" type='submit' size="large" className='btn-submit'>{isLoad ? <CircularProgress color="secondary" id='loading'></CircularProgress> : "Đăng ký"}</Button>
                         <span>Bạn đã có tài khoản ?</span>
                         <Button variant="text" size="small" className='btn-registration' onClick={handleChange}>Đăng nhập ngay</Button>
                     </div>

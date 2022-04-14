@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.header {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.css-sghohy-MuiButtonBase-root-MuiButton-root {
+    text-transform: none !important;
+    font-weight: bold !important;
+    margin: 5px !important;
+    background-color: rgb(14, 105, 223) !important;
+    border-radius: 7px !important;
+    box-shadow: none !important;
+    padding: 5px 15px !important;
+}
+
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+    font-weight: bold !important;
+    text-transform: none !important;
+    border: none !important;
+    color: black !important;
+    background-color: rgb(209, 209, 209) !important;
+    margin: 5px !important;
+    border-radius: 7px !important;
+}
+
+.css-cveggr-MuiListItemIcon-root {
+    min-width: 35px !important;
+}
+
+.css-10hburv-MuiTypography-root {
+    font-size: calc(1rem - 1px) !important;
+    font-weight: 600 !important;
+}
+
+.css-cvhtoe-MuiButtonBase-root-MuiListItemButton-root.Mui-selected {
+    border-radius: 0 1rem 1rem 0 !important;
+}

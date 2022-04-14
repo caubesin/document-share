@@ -1,0 +1,108 @@
+.side-bar {
+    position: relative;
+    width: 15%;
+    height: 100%;
+}
+
+.document {
+    position: relative;
+    width: 85%;
+    height: 100%;
+    flex-shrink: 1;  
+}
+
+.document-header {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.document-header > p{
+    width: auto;
+    height: auto;
+    font-size: large;
+}
+
+.document-header__list-ctrl {
+    position: relative;
+    width: auto;
+    height: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    margin-right: 20px;
+}
+
+.document-body {
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-shrink: 1;
+    overflow: hidden;
+}
+
+.MuiDrawer-paper {
+    height: 100vh !important;
+}
+
+.table-container {
+    max-height: 100vh;
+}
+
+.icon {
+    width: 3%;
+    margin-right: 3%;
+}
+
+.file-name, .friend {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    font-weight: bold;
+    
+}
+
+.file-name > .icon {
+    width: 10%;
+    margin-right: 5%;
+}
+
+.file-info, .friend-info {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.file-info p, .friend-info p {
+    font-weight: 600;
+    margin: 10px 0 10px 0;
+}
+
+.access-name {
+    width: 60%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.file-info__table, .friend-info__table {
+    width: 100%;
+    height: auto;
+}
+
+.file-info__table td, .friend-info__table td {
+    font-size: small;
+}
+
